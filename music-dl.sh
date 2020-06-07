@@ -1,3 +1,3 @@
 #!/bin/bash
 
-youtube-dl -f bestaudio --extract-audio --add-metadata "$1"
+youtube-dl -if bestaudio --extract-audio --add-metadata "$1"

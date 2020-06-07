@@ -1,6 +1,6 @@
 #!/bin/bash
 
-selection=$(echo -e "cancel\nLogout\nShut Down\nReboot" | rofi -width -150 -dmenu -i -p "Exit?")
+selection=$(echo -e "cancel\nLogout\nShut Down\nReboot" | fzf)
 
 case $selection in
 	cancel)
