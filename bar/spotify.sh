@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 desktop=$(wmctrl -d | grep ":" | cut -c 1)
 

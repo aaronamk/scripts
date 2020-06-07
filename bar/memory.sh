@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 mb=$(free -m | grep Mem: | awk '{print $3}')
 

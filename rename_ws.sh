@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ws="$(wmctrl -d | grep "*" | awk -F'  ' '{print $5}') "
 new="$(rofi -dmenu -p 'Rename Workspace' -filter "${ws:2:-1}") "

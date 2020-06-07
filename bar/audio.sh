@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Displays the default device, volume, and mute status for i3blocks
 
 set -a

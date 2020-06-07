@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 selection=$(echo -e "cancel\nLogout\nShut Down\nReboot" | fzf)
 
