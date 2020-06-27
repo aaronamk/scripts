@@ -1,6 +1,6 @@
 #!/bin/sh
 
-selection=$(echo -e "cancel\nLogout\nShut Down\nReboot" | fzf)
+selection=$(echo -e "cancel\nLogout\nShut Down\nReboot" | fzf --prompt "Session: ")
 
 case $selection in
 	cancel)

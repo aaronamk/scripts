@@ -1,3 +1,5 @@
 #!/bin/sh
 
-xdg-open $((fd -a '' .config .local/bin; fd -a 'config.*\.h' ~/.compiled/suckless) | fzf)
+locations=$(fd -a '' .config .local/bin; fd -a 'config.*\.h' ~/.local/compiled)
+
+echo "$locations" | fzf --prompt "Configure: " | xargs -r $EDITOR

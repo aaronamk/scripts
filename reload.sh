@@ -3,9 +3,6 @@
 # reload displays
 autorandr -c
 
-# start bar
-load_polybar.sh &
-
 # start hotkey daemon
 pkill sxhkd
 sxhkd &
