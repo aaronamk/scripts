@@ -1,18 +1,18 @@
 #!/bin/sh
 
-selection=$(echo -e "cancel\nLogout\nShut Down\nReboot" | fzf --prompt "Session: ")
+selection=$(echo -e "cancel\nLogout\nShut Down\nReboot" | fzf --prompt "Session: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
-	cancel)
+	"cancel")
 		exit 1
 		;;
-	"Logout")
-		$(pkill -9 -t $(ps $(pgrep Xorg) | grep tty | awk '{print $2}'))
+	"logout")
+		pkill -9 -t $(ps $(pgrep Xorg) | grep tty | awk '{print $2}')
 		;;
-	"Shut Down")
-		$(shutdown now)
+	"shut down")
+		shutdown now
 		;;
-	"Reboot")
-		$(systemctl reboot)
+	"reboot")
+		systemctl reboot
 		;;
 esac
