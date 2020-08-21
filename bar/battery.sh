@@ -1,90 +1,44 @@
-#!/usr/bin/env python3
-#
-# Copyright (C) 2016 James Murphy
-# Licensed under the GPL version 2 only
-#
-# A battery indicator blocklet script for i3blocks
+#!/bin/sh
+# Author: Aaron Klein
 
-import re
-from subprocess import check_output
+# print help message
+print_help() {
+	format="%-24.25s%s\n"
+	printf "Usage: battery.sh [options]\n\n"
+	printf $format "-h" "display this help and exit"
+	printf $format "-b <battery number>" "display info about a specific battery"
+}
 
-status = check_output(['acpi'], universal_newlines=True)
+# print battery information
+print_inf() {
+	printf "%s%%\n" $1
+}
 
-if not status:
-    # stands for no battery found
-    fulltext = "<span color='red'><span font='FontAwesome'>\uf00d \uf240</span></span>"
-    percentleft = 100
-else:
-    # if there is more than one battery in one laptop, the percentage left is 
-    # available for each battery separately, although state and remaining 
-    # time for overall block is shown in the status of the first battery 
-    batteries = status.split("\n")
-    state_batteries=[]
-    commasplitstatus_batteries=[]
-    percentleft_batteries=[]
-    time = ""
-    for battery in batteries:
-        if battery!='':
-            state_batteries.append(battery.split(": ")[1].split(", ")[0])
-            commasplitstatus = battery.split(", ")
-            if not time:
-                time = commasplitstatus[-1].strip()
-                # check if it matches a time
-                time = re.match(r"(\d+):(\d+)", time)
-                if time:
-                    time = ":".join(time.groups())
-                    timeleft = " [{}]".format(time)
-                else:
-                    timeleft = ""
+case $1 in
+	"")
+		battery="/sys/class/power_supply"
+		charge0=$(cat $battery/BAT0/capacity)
+		charge1=$(cat $battery/BAT1/capacity)
+		charge=$(((charge0+charge1)/2))
+		print_inf $charge
+		exit 0
+		;;
+	"-b")
+		battery="/sys/class/power_supply/BAT$2"
+		cat $battery/capacity
+		exit 0
+		;;
+	"-h")
+		print_help
+		exit 0
+		;;
+	*)
+		echo -e "Invalid option: option $1 not recognized\n"
+		print_help
+		exit 0
+		;;
+esac
 
-            p = int(commasplitstatus[1].rstrip("%\n"))
-            if p>0:
-                percentleft_batteries.append(p)
-            commasplitstatus_batteries.append(commasplitstatus)
-    state = state_batteries[0]
-    commasplitstatus = commasplitstatus_batteries[0]
-    if percentleft_batteries:
-        percentleft = int(sum(percentleft_batteries)/len(percentleft_batteries))
-    else:
-        percentleft = 0
+#[ -z $1 ] &&
 
-    # stands for charging
-    FA_LIGHTNING = "<span color='yellow'><span font='FontAwesome'>\uf0e7</span></span>"
-
-    # stands for plugged in
-    FA_PLUG = "<span font='FontAwesome'>\uf1e6</span>"
-
-    # stands for using battery
-    FA_BATTERY = "<span font='FontAwesome'>\uf240</span>"
-
-    # stands for unknown status of battery
-    FA_QUESTION = "<span font='FontAwesome'>\uf128</span>"
-
-
-    if state == "Discharging":
-        fulltext = FA_BATTERY + " "
-    elif state == "Full":
-        fulltext = FA_PLUG + " "
-        timeleft = ""
-    elif state == "Unknown":
-        fulltext = FA_QUESTION + " " + FA_BATTERY + " "
-        timeleft = ""
-    else:
-        fulltext = FA_LIGHTNING + " " + FA_PLUG + " "
-
-    def color(percent):
-        if percent < 5:
-            # exit code 33 will turn background red
-            return "#FF0000"
-        if percent < 15:
-            return "#FF3300"
-        return "#FFFFFF"
-
-    form =  '<span color="{}">{}%</span>'
-    fulltext += form.format(color(percentleft), percentleft)
-    fulltext += timeleft
-
-print(fulltext)
-print(fulltext)
-if percentleft < 10:
-    exit(33)
+#&& echo "Specify battery number \"0\" or \"1\"" && exit 1

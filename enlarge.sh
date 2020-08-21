@@ -1,3 +1,3 @@
 #!/bin/sh
 
-xrandr --output eDP1 --mode "1280x720"
+xrandr --output DP1 --mode "1280x720"
