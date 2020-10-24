@@ -22,5 +22,9 @@ xcape -e 'Control_L=Escape;Hyper_R=Tab' &
 pkill xbanish
 xbanish &
 
+# restart bar
+#pkill run-bar.sh
+#run-bar.sh &
+
 # set output to HDMI audio
 #pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo+input:analog-stereo

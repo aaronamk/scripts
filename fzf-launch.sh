@@ -1,14 +1,14 @@
 #!/bin/sh
 
-options="firefox\nst\nnvim\nvifm\nranger\ngparted\nhtop\nAndroid Studio\nZoom\nColor Picker\narandr\nMusicBrainz Picard\nDiscord\nMinecraft\nWar Thunder"
-selection=$(echo -e "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
+options="firefox\nterminal\nnvim\nvifm\nranger\nnewsboat\nxev\nnmtui\ngparted\nhtop\nAndroid Studio\nZoom\nColor Picker\narandr\nMusicBrainz Picard\nDiscord\nSteam\nMinecraft\nWar Thunder\nBorderlands"
+selection=$(echo "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
 	"firefox")
 		firefox
 		;;
-	"st")
-		st
+	"terminal")
+		$TERMINAL
 		;;
 	"nvim")
 		nvim
@@ -19,6 +19,15 @@ case $selection in
 	"ranger")
 		ranger
 		;;
+	"newsboat")
+		newsboat
+		;;
+	"nmtui")
+		nmtui-connect
+		;;
+	"xev")
+		xev
+		;;
 	"gparted")
 		sudo gparted
 		;;
@@ -26,7 +35,7 @@ case $selection in
 		htop
 		;;
 	"android studio")
-		flatpak run com.google.AndroidStudio
+		android-studio
 		;;
 	"zoom")
 		zoom
@@ -43,10 +52,15 @@ case $selection in
 	"discord")
 		discord
 		;;
+	"steam")
+		steam
+		;;
 	"minecraft")
 		minecraft-launcher
 		;;
 	"war thunder")
 		$COMPILED/WarThunder/launcher # doesn't work
+		;;
+	"borderlands")
 		;;
 esac

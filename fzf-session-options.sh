@@ -1,7 +1,7 @@
 #!/bin/sh
 
 options="cancel\nLock\nSuspend\nLogout\nShut Down\nReboot"
-selection=$(echo -e "$options" | fzf --prompt "Session: " | tr '[:upper:]' '[:lower:]')
+selection=$(echo "$options" | fzf --prompt "Session: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
 	"cancel")
