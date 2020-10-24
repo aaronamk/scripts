@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Author: Aaron Klein
 
 # print help message
@@ -11,33 +11,44 @@ print_help() {
 
 # print battery information
 print_inf() {
-	printf "%s%%\n" $1
+	[ $print ] && printf " %s%%\n" $1 && exit 0
+	echo " %s%%" $1 > $SCRIPTS/bar/blocks && exit 0
 }
 
-case $1 in
-	"")
-		battery="/sys/class/power_supply"
-		charge0=$(cat $battery/BAT0/capacity)
-		charge1=$(cat $battery/BAT1/capacity)
-		charge=$(((charge0+charge1)/2))
-		print_inf $charge
-		exit 0
-		;;
-	"-b")
-		battery="/sys/class/power_supply/BAT$2"
-		cat $battery/capacity
-		exit 0
-		;;
-	"-h")
-		print_help
-		exit 0
-		;;
-	*)
-		echo -e "Invalid option: option $1 not recognized\n"
-		print_help
-		exit 0
-		;;
-esac
+# write battery information
+write_inf() {
+	echo " %s%%" $1 > $SCRIPTS/bar/blocks
+}
+
+
+while getopts 'wb:h' OPTION; do
+	case $OPTION in
+		"b")
+			battery="/sys/class/power_supply/BAT$2"
+			cat $battery/capacity
+			exit 0
+			;;
+		"h")
+			print_help
+			exit 0
+			;;
+		?)
+			echo -e "Invalid option: option $OPTION not recognized\n"
+			print_help
+			exit 1
+			;;
+	esac
+done
+
+battery="/sys/class/power_supply"
+
+if [ -z $BAT ] then
+	charge0=$(cat $battery/BAT0/capacity)
+	charge1=$(cat $battery/BAT1/capacity)
+	charge=$(((charge0+charge1)/2))
+	print_inf $charge
+	exit 0
+fi
 
 #[ -z $1 ] &&
 
