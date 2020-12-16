@@ -1,10 +1,11 @@
 #!/bin/sh
 
-$("$@") > /dev/null 2>&1 &
-sleep .3
-bspc node -s last.local
-bspc node -f last.local
-id=$(xdo id)
+ARGS=$*
+CMD="${ARGS%% -- *}"
+FILE="${ARGS##* -- }"
+[ "$CMD" != "$FILE" ] && SAFEFILE=$(echo "$FILE" | sed 's/ /\\ /g')
+WID=$(xdo id)
+
 xdo hide
-wait
-xdo show "$id"
+$SHELL -i -c "$CMD $SAFEFILE > /dev/null 2>&1; exit"
+xdo show "$WID"

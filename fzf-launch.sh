@@ -1,7 +1,8 @@
 #!/bin/sh
+# Author: aaronamk
 
 options="firefox\nterminal\nnvim\nvifm\nranger\nnewsboat\nxev\nnmtui\ngparted\nhtop\nAndroid Studio\nZoom\nColor Picker\narandr\nMusicBrainz Picard\nDiscord\nSteam\nMinecraft\nWar Thunder\nBorderlands"
-selection=$(echo "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
+selection=$(echo -e "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
 	"firefox")

@@ -1,4 +1,5 @@
 #!/bin/sh
+# Author: aaronamk
 
 $TERMINAL -e $EDITOR $1/diff.txt &
 sleep 0.1

@@ -1,8 +1,10 @@
 #!/bin/sh
+# Author: aaronamk
 
 bat0_block() {
 	echo /sys/class/power_supply/BAT0/capacity | \
 		entr xsetroot -name "$(battery.sh -b 0)"
+#echo /sys/class/power_supply/BAT0/capacity | entr -s 'bat0'
 }
 
 bat1_block() {
@@ -19,13 +21,13 @@ mem_block() {
 
 date_block() {
 	while :; do
-		sed -i "$1c\\$(date '+%m/%d/%Y %I:%M:%S %P')" $XDG_CACHE_HOME/bar_blocks &
+		sed -i "$1c\\$(date +$DATE_FMT)" $XDG_CACHE_HOME/bar_blocks &
 		sleep 1
 	done
 }
 
 run_bar() {
-	echo "$XDG_CACHE_HOME/bar_blocks" | entr update-bar.sh
+	printf ".cache/bar_blocks" | entr update-bar.sh
 }
 
 mem_block 1 &

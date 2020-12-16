@@ -1,4 +1,5 @@
 #!/bin/sh
+# Author: aaronamk
 
 mb=$(free -h | grep Mem: | awk '{print $3}')
 

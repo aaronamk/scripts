@@ -1,3 +1,4 @@
 #!/bin/sh
+# Author: aaronamk
 
-youtube-dl -if bestaudio --extract-audio --add-metadata "$1"
+youtube-dl -if bestaudio --extract-audio --yes-playlist --add-metadata "$1"

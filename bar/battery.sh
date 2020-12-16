@@ -1,5 +1,5 @@
 #!/bin/bash
-# Author: Aaron Klein
+# Author: aaronamk
 
 # print help message
 print_help() {

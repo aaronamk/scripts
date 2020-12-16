@@ -1,4 +1,5 @@
 #!/bin/sh
+# Author: aaronamk
 
 desktop=$(wmctrl -d | grep ":" | cut -c 1)
 

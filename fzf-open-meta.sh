@@ -1,4 +1,5 @@
 #!/bin/sh
+# Author: aaronamk
 
 locations=$(fd -a '' .config .local/bin; fd -a 'config.*\.h' $COMPILED)
 

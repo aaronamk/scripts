@@ -1,4 +1,5 @@
 #!/bin/sh
+# Author: aaronamk
 
 case $1 in
 	"+") brightnessctl set 70+ ;;
