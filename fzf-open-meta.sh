@@ -1,6 +1,6 @@
 #!/bin/sh
 # Author: aaronamk
 
-locations=$(fd -a '' .config .local/bin; fd -a 'config.*\.h' $COMPILED)
+locations=$(fd -a '' $XDG_CONFIG_HOME $SCRIPTS; fd -a 'config.*\.h' $COMPILED)
 
-echo "$locations" | fzf --prompt "Configure: " | xargs -r $EDITOR
+omni-open.sh "$(echo "$locations" | fzf --prompt "Configure: ")"
