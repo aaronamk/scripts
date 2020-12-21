@@ -1,6 +1,9 @@
 #!/bin/sh
 # Author: aaronamk
 
+# start ssh agent
+eval "$(ssh-agent -s)"
+
 # remap keyboards
 sudo udevmon -c $XDG_CONFIG_HOME/udevmon/config.yaml &
 
