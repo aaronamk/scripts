@@ -24,5 +24,6 @@ pkill xbanish
 xbanish &
 
 # restart bar
-#pkill entr
-#run-bar.sh &
+pkill entr
+pkill run-bar.sh
+run-bar.sh &

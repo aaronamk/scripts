@@ -15,7 +15,7 @@ case $selection in
 		systemctl suspend
 		;;
 	"logout")
-		pkill -2 -t $(ps $(pgrep Xorg) | grep tty | awk '{print $2}')
+		pkill -9 -t $(ps $(pgrep Xorg) | grep tty | awk '{print $2}')
 		;;
 	"shut down")
 		shutdown now

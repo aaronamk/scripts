@@ -1,7 +1,7 @@
 #!/bin/sh
 # Author: aaronamk
 
-options="firefox\nterminal\nnvim\nvifm\nranger\nnewsboat\nxev\nnmtui\ngparted\nhtop\nAndroid Studio\nZoom\nColor Picker\narandr\nMusicBrainz Picard\nDiscord\nSteam\nMinecraft\nWar Thunder\nBorderlands"
+options="firefox\nterminal\nnvim\nvifm\nranger\nnewsboat\nxev\nnmtui\ngparted\nhtop\nmonitor\nZoom\nColor Picker\nMouse Configurator\narandr\nMusicBrainz Picard\nDiscord\nSteam\nMinecraft\nWar Thunder\nBorderlands"
 selection=$(echo -e "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
@@ -35,14 +35,17 @@ case $selection in
 	"htop")
 		htop
 		;;
-	"android studio")
-		android-studio
+	"monitor")
+		fzf-monitor-source.sh
 		;;
 	"zoom")
 		zoom
 		;;
 	"color picker")
 		gtk-demo
+		;;
+	"mouse configurator")
+		piper
 		;;
 	"arandr")
 		arandr
