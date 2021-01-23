@@ -1,11 +1,28 @@
 #!/bin/sh
 # Author: Aaron Klein
 # deploy Aaron's base user
+# transfer files from previous computer before running
 
-mkdir ~/.cache
-mkdir ~/.local
+# create a few necessary directories
+mkdir ~/.cache ~/.local ~/.local/share ~/.local/compiled Desktop Downloads mnt Music Pictures
+
+# install a few necessary packages
+sudo pacman -S --needed base-devel openssh
+
+# clone repos from github
+eval "$(ssh-agent -s)"
 git clone git@github.com:aaronamk/dotfiles.git ~/.config
 git clone git@github.com:aaronamk/scripts.git ~/.local/bin
+
+# install yay
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ..
+rm -rf yay
+
+# install all packages
+yay -S --needed - < ~/.config/package-list.txt
 
 # install vim-plug
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
