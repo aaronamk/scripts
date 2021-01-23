@@ -3,11 +3,14 @@
 # deploy Aaron's base user
 # transfer files from previous computer before running
 
-# create a few necessary directories
-mkdir ~/.cache ~/.local ~/.local/share ~/.local/compiled Desktop Downloads mnt Music Pictures
+# create necessary directories (ignore if already exist)
+mkdir -p ~/.cache ~/.local/share ~/.local/compiled Desktop Downloads mnt Music Pictures
+echo 'export ZDOTDIR="$HOME/.config/zsh"'
 
-# install a few necessary packages
-sudo pacman -S --needed base-devel openssh
+# install a few necessary packages (ignore if already exist)
+sudo pacman -S --needed base-devel gnupg openssh
+
+gpg --full-generate-key
 
 # clone repos from github
 eval "$(ssh-agent -s)"
@@ -21,7 +24,7 @@ makepkg -si
 cd ..
 rm -rf yay
 
-# install all packages
+# install all packages (ignore if already exist)
 yay -S --needed - < ~/.config/package-list.txt
 
 # install vim-plug
