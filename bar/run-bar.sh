@@ -1,17 +1,7 @@
 #!/bin/sh
 # Author: aaronamk
 
-
-bat0_block() {
-	printf "/sys/class/power_supply/BAT0/capacity" | entr sed -i "$1c\\ $(battery.sh -b 0)" $XDG_CACHE_HOME/bar_blocks
-#echo /sys/class/power_supply/BAT0/capacity | entr -s 'bat0'
-}
-
-
-bat1_block() {
-	printf "/sys/class/power_supply/BAT1/capacity" | entr sed -i "$1c\\ $(battery.sh -b 1)" $XDG_CACHE_HOME/bar_blocks
-}
-
+printf "\n\n" > $XDG_CACHE_HOME/bar_blocks
 
 mem_block() {
 	while :; do
@@ -35,8 +25,6 @@ run_bar() {
 }
 
 
-bat0_block 1 &
-bat1_block 2 &
-mem_block 3 &
-date_block 4 &
+mem_block 1 &
+date_block 2 &
 run_bar
