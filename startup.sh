@@ -16,5 +16,8 @@ mpDris2 & # add support for MPRIS
 pactl set-sink-volume @DEFAULT_SINK@ 40%
 pactl set-source-volume @DEFAULT_SOURCE@ 25%
 
+# set bg
+hsetroot -solid '#000000'
+
 # set output to HDMI audio
 #pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo+input:analog-stereo

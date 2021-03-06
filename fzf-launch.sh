@@ -1,8 +1,8 @@
 #!/bin/sh
 # Author: aaronamk
 
-options="firefox\nterminal\nnvim\nvifm\nranger\nnewsboat\nxev\nnmtui\ngparted\nhtop\nmonitor\nZoom\nColor Picker\nMouse Configurator\narandr\nMusicBrainz Picard\nDiscord\nSteam\nMinecraft\nWar Thunder\nBorderlands"
-selection=$(echo -e "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
+options="firefox\nterminal\nnvim\nvifm\nranger\nnewsboat\nxev\nnmtui\ngparted\nhtop\ngputop\nmonitor\nZoom\nColor Picker\nMouse Configurator\narandr\nMusicBrainz Picard\nDiscord\nSteam\nMinecraft\nWar Thunder\nBorderlands"
+selection=$(printf "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
 	"firefox")
@@ -34,6 +34,9 @@ case $selection in
 		;;
 	"htop")
 		htop
+		;;
+	"gputop")
+		sudo intel_gpu_top
 		;;
 	"monitor")
 		fzf-monitor-source.sh

@@ -10,9 +10,14 @@ sxhkd &
 
 # set keyrepeat
 xset r rate 300 35 &
+xset s off -dpms &
 
 # load Xresources
 xrdb -load $XDG_CONFIG_HOME/Xresources &
+
+# compositor
+pkill picom
+picom &
 
 # hide cursor when typing
 pkill xbanish

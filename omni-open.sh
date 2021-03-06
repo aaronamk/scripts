@@ -10,6 +10,7 @@ case "$file_type" in
 	*"image"*) imv "$1" ;;
 	*"audio"*) mpv "$1" ;;
 	*"movie"*) mpv "$1" ;;
+	*"media"*) mpv "$1" ;;
 	*"pdf"*) zathura "$1" ;;
 #	*"html"*) firefox "$1" ;;
 	"directory") vifm "$1" ;;
