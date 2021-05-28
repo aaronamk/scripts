@@ -1,12 +1,15 @@
 #!/bin/sh
 # Author: aaronamk
 
-options="Suspend\nLock\nLogout\nShut Down\nReboot"
+options="Suspend\nKill\nLock\nLogout\nShut Down\nReboot"
 selection=$(printf "$options" | fzf --prompt "Session: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
 	"suspend")
 		systemctl suspend
+		;;
+	"kill")
+		xkill
 		;;
 	"lock")
 		i3lock -n -u -c 1c69b1 -i $XDG_PICTURES_DIR/backgrounds/blue_screen.png

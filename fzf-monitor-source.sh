@@ -2,7 +2,7 @@
 # Author: aaronamk
 
 options="HDMI\nDP\nmDP"
-selection=$(echo -e "$options" | fzf --prompt "Launch: ")
+selection=$(printf "$options" | fzf --prompt "Launch: ")
 
 case $selection in
 	"HDMI") sudo ddcutil --bus=5 setvcp 60 0x11 ;;

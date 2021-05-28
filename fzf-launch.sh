@@ -1,7 +1,7 @@
 #!/bin/sh
 # Author: aaronamk
 
-options="firefox\nterminal\nnvim\nvifm\nranger\nnewsboat\nxev\nnmtui\ngparted\nhtop\ngputop\nmonitor\nZoom\nColor Picker\nMouse Configurator\narandr\nMusicBrainz Picard\nDiscord\nSteam\nMinecraft\nWar Thunder\nBorderlands"
+options="firefox\nterminal\nnvim\nvifm\nranger\nnewsboat\nxev\nnmtui\ngparted\nhtop\nintelgputop\nradeongputop\nmonitor\nZoom\nColor Picker\nMouse Configurator\nMusicBrainz Picard\nDiscord\nSteam"
 selection=$(printf "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
@@ -35,8 +35,11 @@ case $selection in
 	"htop")
 		htop
 		;;
-	"gputop")
+	"intelgputop")
 		sudo intel_gpu_top
+		;;
+	"radeongputop")
+		sudo radeontop
 		;;
 	"monitor")
 		fzf-monitor-source.sh
@@ -45,12 +48,12 @@ case $selection in
 		zoom
 		;;
 	"color picker")
-		gtk-demo
+		gtk4-demo
 		;;
 	"mouse configurator")
 		piper
 		;;
-	"arandr")
+	"display configurator")
 		arandr
 		;;
 	"musicbrainz picard")
@@ -61,13 +64,5 @@ case $selection in
 		;;
 	"steam")
 		steam
-		;;
-	"minecraft")
-		minecraft-launcher
-		;;
-	"war thunder")
-		$COMPILED/WarThunder/launcher # doesn't work
-		;;
-	"borderlands")
 		;;
 esac
