@@ -1,7 +1,7 @@
 #!/bin/sh
 # Author: aaronamk
 
-options="firefox\nterminal\nnvim\nvifm\nranger\nnewsboat\nxev\nnmtui\ngparted\nhtop\nintelgputop\nradeongputop\nmonitor\nZoom\nColor Picker\nMouse Configurator\nMusicBrainz Picard\nDiscord\nSteam"
+options="firefox\nterminal\nnvim\nvifm\nranger\nnewsboat\nxev\nnmtui\npass\nmount\numount\ngparted\nhtop\nintelgputop\nradeongputop\nmonitor\nZoom\nColor Picker\nMouse Configurator\nMusicBrainz Picard\nDiscord\nMinecraft\nEmulator (RetroArch)\n3DS (Citra)"
 selection=$(printf "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
@@ -26,8 +26,17 @@ case $selection in
 	"nmtui")
 		nmtui-connect
 		;;
+	"pass")
+		fzf-pass.sh
+		;;
 	"xev")
 		xev
+		;;
+	"mount")
+		fzf-mount.sh
+		;;
+	"umount")
+		fzf-mount.sh umount
 		;;
 	"gparted")
 		sudo gparted
@@ -62,7 +71,13 @@ case $selection in
 	"discord")
 		discord
 		;;
-	"steam")
-		steam
+	"minecraft")
+		minecraft-launcher
+		;;
+	"emulator (retroarch)")
+		retroarch
+		;;
+	"3ds (citra)")
+		citra-qt
 		;;
 esac
