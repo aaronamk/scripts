@@ -9,8 +9,8 @@ block=$(lsblk -no HOTPLUG,KNAME,FSTYPE,SIZE,VENDOR,MODEL,PARTLABEL,MOUNTPOINT | 
 path="/dev/$(printf $block | cut -d ' ' -f 1)"
 
 if [ -n "$1" ]; then
-	udevil unmount $path
-	exit
+  udevil unmount $path
+  exit
 else
-	vifm "$(udevil mount $path | rev | cut -d ' ' -f 1 | rev)"
+  vifm "$(udevil mount $path | rev | cut -d ' ' -f 1 | rev)"
 fi

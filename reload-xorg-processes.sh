@@ -5,15 +5,14 @@
 autorandr -c
 
 # start hotkey daemon
-pkill sxhkd
-sxhkd &
-
-# set keyrepeat
-xset r rate 300 35 &
-xset s off -dpms &
+# pkill sxhkd
+# sxhkd &
 
 # load Xresources
 xrdb -load $XDG_CONFIG_HOME/Xresources &
+
+#set background
+hsetroot -solid '#000000'
 
 # compositor
 pkill picom
@@ -23,7 +22,11 @@ picom &
 pkill xbanish
 xbanish &
 
+# set keyrepeat
+xset r rate 300 35
+xset s off -dpms
+
 # restart bar
-pkill entr
-pkill run-bar.sh
-run-bar.sh &
+# pkill entr
+# pkill run-bar.sh
+# run-bar.sh &
