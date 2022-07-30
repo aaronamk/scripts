@@ -8,22 +8,13 @@ setsid sudo hk-relay -d /dev/input/by-id/usb-SEMITEK_USB-HID_Gaming_Keyboard_SN0
 # start ssh agent
 eval "$(ssh-agent)"
 
-# start authentication agent (polkit)
-setsid /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-# start music daemon
-setsid mpd &
-setsid mpDris2 & # add support for MPRIS
-#mpc consume on
+# autostart programs
+dex -a -s $XDG_CONFIG_HOME/autostart
 
 # set audio levels
-pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:analog-stereo+input:analog-stereo
-pactl set-sink-volume @DEFAULT_SINK@ 45%
-pactl set-source-volume @DEFAULT_SOURCE@ 25%
-setsid easyeffects --gapplication-service &
-
-# set bg
-setsid flashfocus &
+pactl set-card-profile alsa_card.pci-0000_0b_00.4 output:analog-stereo+input:analog-stereo
+pactl set-sink-volume @DEFAULT_SINK@ 60%
+pactl set-source-volume @DEFAULT_SOURCE@ 75%
 
 # mount google drives
 setsid rclone mount --daemon wm-drive: ~/wm-drive \

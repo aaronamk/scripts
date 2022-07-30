@@ -1,22 +1,10 @@
 #!/bin/sh
 # Author: aaronamk
 
-options="Lutris\nSteam\nEpic/Heroic Launcher\nfirefox\nterminal\nnvim\nvifm\nnewsboat\nxev\nnmtui\nEQ (EasyEffects)\npass\nmount\numount\ngparted\nhtop\nintelgputop\nradeongputop\nmonitor\nIRC\nZoom\nColor Picker\nMouse Configurator\nController Configurator\nDisplay Configurator\nMusicBrainz Picard\nDiscord\nMinecraft\nEmulator (RetroArch)\n3DS (Citra)"
+options="firefox\nterminal\nnvim\nvifm\nnewsboat\nxev\nNetwork Configurator\nBluetooth Configurator\nEQ (EasyEffects)\npass\nmount\numount\ngparted\nhtop\nintelgputop\nradeongputop\nmonitor\nIRC\nZoom\nColor Picker\nMouse Configurator\nController Configurator\nDisplay Configurator\nMusicBrainz Picard\nDiscord\nLutris\nSteam\nEpic/Heroic Launcher\nMinecraft\nRetroArch (Emulator)\nCitra (3DS Emulator)\nCemu (Wii U Emulator)"
 selection=$(printf "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
-  "lutris")
-    setsid lutris &
-    sleep 0.1
-    ;;
-  "steam")
-    setsid steam &
-    sleep 0.1
-    ;;
-  "epic/heroic launcher")
-    setsid heroic &
-    sleep 0.1
-    ;;
   "firefox")
     setsid firefox &
     sleep 0.1
@@ -34,8 +22,12 @@ case $selection in
   "newsboat")
     newsboat
     ;;
-  "nmtui")
+  "network configurator")
     nmtui-connect
+    ;;
+  "bluetooth configurator")
+    setsid blueman-manager &
+    sleep 0.1
     ;;
   "eq (easyeffects)")
     easyeffects
@@ -99,16 +91,32 @@ case $selection in
   "discord")
     discord
     ;;
+  "lutris")
+    setsid lutris &
+    sleep 0.1
+    ;;
+  "steam")
+    setsid steam &
+    sleep 0.1
+    ;;
+  "epic/heroic launcher")
+    setsid heroic &
+    sleep 0.1
+    ;;
   "minecraft")
     setsid minecraft-launcher &
     sleep 0.1
     ;;
-  "emulator (retroarch)")
+  "retroarch (emulator)")
     setsid retroarch &
     sleep 0.1
     ;;
-  "3ds (citra)")
+  "citra (3ds emulator)")
     setsid citra-qt &
+    sleep 0.1
+    ;;
+  "Cemu (Wii U Emulator)")
+    setsid cemu &
     sleep 0.1
     ;;
 esac
