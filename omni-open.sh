@@ -29,12 +29,12 @@ case "$ext" in
   "pdf")  setsid zathura     "$1" ;;
   "odt")  setsid libreoffice "$1" ;;
   "docx") setsid libreoffice "$1" ;;
-  "html") setsid firefox     "$1" ;;
+  "html") setsid "$BROWSER"  "$1" ;;
   "gz")   setsid file-roller "$1" ;;
   "tar")  setsid file-roller "$1" ;;
   "zip")  setsid file-roller "$1" ;;
   "gzip") setsid file-roller "$1" ;;
   "7z")   setsid file-roller "$1" ;;
   "rar")  setsid file-roller "$1" ;;
-  *)      [ "$(file -b $1)" = "directory" ] && vifm "$1" || nvim "$1" ;;
+  *)      [ "$(file -b $1)" = "directory" ] && "$FILE" "$1" || "$EDITOR" "$1" ;;
 esac

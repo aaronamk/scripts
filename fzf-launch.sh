@@ -115,7 +115,7 @@ case $selection in
     setsid citra-qt &
     sleep 0.1
     ;;
-  "Cemu (Wii U Emulator)")
+  "cemu (wii u emulator)")
     setsid cemu &
     sleep 0.1
     ;;
