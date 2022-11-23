@@ -2,8 +2,7 @@
 # Author: aaronamk
 
 # start hotkey daemon
-setsid hkd &
-setsid sudo hk-relay -d /dev/input/by-id/usb-SEMITEK_USB-HID_Gaming_Keyboard_SN0000000001-event-kbd,/dev/input/by-id/usb-SEMITEK_USB-HID_Gaming_Keyboard_SN0000000001-if02-event-mouse &
+setsid hkd /dev/input/by-id/usb-SEMITEK_USB-HID_Gaming_Keyboard_SN0000000001-event-kbd /dev/input/by-id/usb-SEMITEK_USB-HID_Gaming_Keyboard_SN0000000001-if02-event-mouse &
 
 # start ssh agent
 eval "$(ssh-agent)"

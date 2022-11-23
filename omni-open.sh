@@ -28,6 +28,8 @@ case "$ext" in
   "webm") setsid mpv         "$1" ;;
   "pdf")  setsid zathura     "$1" ;;
   "odt")  setsid libreoffice "$1" ;;
+  "ods")  setsid libreoffice "$1" ;;
+  "odp")  setsid libreoffice "$1" ;;
   "docx") setsid libreoffice "$1" ;;
   "html") setsid "$BROWSER"  "$1" ;;
   "gz")   setsid file-roller "$1" ;;
