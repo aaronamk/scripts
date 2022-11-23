@@ -4,10 +4,6 @@
 # reload displays
 autorandr -c
 
-# start hotkey daemon
-# pkill sxhkd
-# sxhkd &
-
 # load Xresources
 xrdb -load $XDG_CONFIG_HOME/Xresources &
 

@@ -1,11 +1,11 @@
 #!/bin/sh
 # Author: aaronamk
 
-# start hotkey daemon
-setsid hkd /dev/input/by-id/usb-SEMITEK_USB-HID_Gaming_Keyboard_SN0000000001-event-kbd /dev/input/by-id/usb-SEMITEK_USB-HID_Gaming_Keyboard_SN0000000001-if02-event-mouse &
-
 # start ssh agent
 eval "$(ssh-agent)"
+
+# start clipboard daemon
+#clipmenud &
 
 # autostart programs
 dex -a -s $XDG_CONFIG_HOME/autostart
