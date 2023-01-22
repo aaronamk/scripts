@@ -10,10 +10,6 @@ xrdb -load $XDG_CONFIG_HOME/Xresources &
 #set background
 hsetroot -solid '#000000'
 
-# compositor
-pkill picom
-picom &
-
 # hide cursor when typing
 pkill xbanish
 xbanish &

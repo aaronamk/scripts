@@ -1,8 +1,9 @@
 #!/bin/sh
 # Author: aaronamk
 
-# start ssh agent
-eval "$(ssh-agent)"
+pkill kanshi
+setsid kanshi &
+
 
 # start clipboard daemon
 #clipmenud &
@@ -12,7 +13,7 @@ dex -a -s $XDG_CONFIG_HOME/autostart
 
 # set audio levels
 pactl set-card-profile alsa_card.pci-0000_0b_00.4 output:analog-stereo+input:analog-stereo
-pactl set-sink-volume @DEFAULT_SINK@ 60%
+pactl set-sink-volume @DEFAULT_SINK@ 50%
 pactl set-source-volume @DEFAULT_SOURCE@ 75%
 
 # mount google drives

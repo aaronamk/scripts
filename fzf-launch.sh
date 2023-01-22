@@ -1,7 +1,7 @@
 #!/bin/sh
 # Author: aaronamk
 
-options="firefox\nterminal\nnvim\nvifm\nnewsboat\nxev\nNetwork Configurator\nBluetooth Configurator\nEQ (EasyEffects)\npass\nmount\numount\ngparted\nhtop\nintelgputop\nradeongputop\nmonitor\nIRC\nZoom\nColor Picker\nMouse Configurator\nController Configurator\nDisplay Configurator\nMusicBrainz Picard\nDiscord\nLutris\nSteam\nEpic/Heroic Launcher\nMinecraft\nRetroArch (Emulator)\nCitra (3DS Emulator)\nCemu (Wii U Emulator)"
+options="firefox\nterminal\nnvim\nvifm\nnewsboat\nxev\nNetwork Configurator\nBluetooth Configurator\nEQ (EasyEffects)\npass\nmount\numount\nDisk Usage (Baobab)\ngparted\nhtop\nintelgputop\nradeongputop\nmonitor\nIRC\nZoom\nColor Picker\nMouse Configurator\nController Configurator\nDisplay Configurator\nMusicBrainz Picard\nDiscord\nLutris\nSteam\nEpic/Heroic Launcher\nMinecraft\nRetroArch (Emulator)\nCitra (3DS Emulator)\nCemu (Wii U Emulator)"
 selection=$(printf "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
@@ -43,6 +43,10 @@ case $selection in
     ;;
   "umount")
     fzf-mount.sh umount
+    ;;
+  "disk usage (baobab)")
+    setsid baobab &
+    sleep 0.1
     ;;
   "gparted")
     setsid sudo gparted &
@@ -89,7 +93,8 @@ case $selection in
     sleep 0.1
     ;;
   "discord")
-    discord
+    setsid discord &
+    sleep 0.1
     ;;
   "lutris")
     setsid lutris &

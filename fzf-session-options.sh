@@ -1,7 +1,7 @@
 #!/bin/sh
 # Author: aaronamk
 
-options="Suspend\nKill\nLock\nLogout\nShut Down\nReboot"
+options="Suspend\nKill\nLogout\nShut Down\nReboot"
 selection=$(printf "$options" | fzf --prompt "Session: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
