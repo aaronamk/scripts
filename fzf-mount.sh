@@ -1,16 +1,20 @@
 #!/bin/sh
 # Author: aaronamk
-# Drive mounter/unmounter. Currently very barebones
+# Drive mounter/unmounter. Sorta barebones.
 
+handle_termination() {
+  udevil unmount $path
+}
 
-block=$(lsblk -no HOTPLUG,KNAME,FSTYPE,SIZE,VENDOR,MODEL,PARTLABEL,MOUNTPOINT | grep '^[[:space:]]*1' | cut -b 9- | fzf)
-[ "$block" = "" ] && exit
+block=$(lsblk -no HOTPLUG,KNAME,FSTYPE,SIZE,VENDOR,MODEL,PARTLABEL,MOUNTPOINT | cut -b 9- | fzf)
+[ -z "$block" ] && exit
 
 path="/dev/$(printf $block | cut -d ' ' -f 1)"
 
-if [ -n "$1" ]; then
-  udevil unmount $path
-  exit
-else
-  vifm "$(udevil mount $path | rev | cut -d ' ' -f 1 | rev)"
-fi
+trap "handle_termination" SIGTERM
+trap "handle_termination" SIGHUP
+
+vifm "$(udevil mount $path | rev | cut -d ' ' -f 1 | rev)"
+printf "Unmount $path? [Y/n] "
+read unmount
+[ "$unmount" = "" ] || [ "$unmount" = "y" ] || [ "$unmount" = "Y" ] && udevil unmount $path

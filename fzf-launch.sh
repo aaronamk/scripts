@@ -1,7 +1,7 @@
 #!/bin/sh
 # Author: aaronamk
 
-options="firefox\nterminal\nnvim\nvifm\nnewsboat\nxev\nNetwork Configurator\nBluetooth Configurator\nEQ (EasyEffects)\npass\nmount\numount\nDisk Usage (Baobab)\ngparted\nhtop\nintelgputop\nradeongputop\nmonitor\nIRC\nZoom\nColor Picker\nMouse Configurator\nController Configurator\nDisplay Configurator\nMusicBrainz Picard\nDiscord\nLutris\nSteam\nEpic/Heroic Launcher\nMinecraft\nRetroArch (Emulator)\nCitra (3DS Emulator)\nCemu (Wii U Emulator)"
+options="firefox\nterminal\nnvim\nvifm\nnewsboat\nxev\nNetwork Configurator\nBluetooth Configurator\nEQ (EasyEffects)\npass\nmount\nDisk Usage (Baobab)\ngparted\nhtop\nintelgputop\nradeongputop\nmonitor\nIRC\nZoom\nColor Picker\nMouse Configurator\nController Configurator\nDisplay Configurator\nMusicBrainz Picard\nBitTorrent (Transmission)\nDiscord\nLutris\nSteam\nEpic/Heroic Launcher\nMinecraft\nRetroArch (Emulator)\nCitra (3DS Emulator)\nCemu (Wii U Emulator)"
 selection=$(printf "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
@@ -40,9 +40,6 @@ case $selection in
     ;;
   "mount")
     fzf-mount.sh
-    ;;
-  "umount")
-    fzf-mount.sh umount
     ;;
   "disk usage (baobab)")
     setsid baobab &
@@ -90,6 +87,10 @@ case $selection in
     ;;
   "musicbrainz picard")
     setsid picard &
+    sleep 0.1
+    ;;
+  "bittorrent (transmission)")
+    setsid transmission-gtk &
     sleep 0.1
     ;;
   "discord")
