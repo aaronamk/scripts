@@ -1,7 +1,7 @@
 #!/bin/sh
 # Author: aaronamk
 
-options="firefox\nterminal\nnvim\nvifm\nnewsboat\nxev\nNetwork Configurator\nBluetooth Configurator\nEQ (EasyEffects)\npass\nmount\nDisk Usage (Baobab)\ngparted\nhtop\nintelgputop\nradeongputop\nmonitor\nIRC\nZoom\nColor Picker\nMouse Configurator\nController Configurator\nDisplay Configurator\nMusicBrainz Picard\nBitTorrent (Transmission)\nDiscord\nLutris\nSteam\nEpic/Heroic Launcher\nMinecraft\nRetroArch (Emulator)\nCitra (3DS Emulator)\nCemu (Wii U Emulator)"
+options="firefox\nterminal\nnvim\nvifm\nnewsboat\nNetwork Configurator\nBluetooth Configurator\nEQ (EasyEffects)\npass\nmount\nDisk Usage (Baobab)\ngparted\nhtop\nintelgputop\nradeongputop\nmonitor\nIRC\nZoom\nColor Picker\nMouse Configurator\nController Configurator\nDisplay Configurator\nMusicBrainz Picard\nBitTorrent (Transmission)\nDiscord\nLutris\nSteam\nEpic/Heroic Launcher\nMinecraft\nRetroArch (Emulator)\nCitra (3DS Emulator)\nCemu (Wii U Emulator)"
 selection=$(printf "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
@@ -30,13 +30,11 @@ case $selection in
     sleep 0.1
     ;;
   "eq (easyeffects)")
-    easyeffects
+    setsid easyeffects &
+    sleep 0.1
     ;;
   "pass")
     fzf-pass.sh
-    ;;
-  "xev")
-    xev
     ;;
   "mount")
     fzf-mount.sh
@@ -46,7 +44,7 @@ case $selection in
     sleep 0.1
     ;;
   "gparted")
-    setsid sudo gparted &
+    setsid gparted &
     sleep 0.1
     ;;
   "htop")
@@ -122,7 +120,7 @@ case $selection in
     sleep 0.1
     ;;
   "cemu (wii u emulator)")
-    setsid cemu &
+    setsid Cemu.AppImage &
     sleep 0.1
     ;;
 esac
