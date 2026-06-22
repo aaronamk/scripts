@@ -17,9 +17,9 @@ dex -a -s $XDG_CONFIG_HOME/autostart
 #pactl set-source-volume @DEFAULT_SOURCE@ 75%
 
 # mount google drives
-#setsid rclone mount --daemon wm-drive: ~/wm-drive \
-#  --drive-chunk-size=128M \
-#  --transfers=16 &
+setsid rclone mount --daemon jra: ~/jra-drive \
+  --drive-chunk-size=128M \
+  --transfers=16 &
 #setsid rclone mount --daemon jra-drive: ~/jra-drive \
 #  --drive-chunk-size=128M \
 #  --transfers=16 &

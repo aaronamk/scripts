@@ -1,7 +1,7 @@
 #!/bin/sh
 # Author: aaronamk
 
-options="firefox\nterminal\nnvim\nvifm\nnewsboat\nNetwork Configurator\nBluetooth Configurator\nEQ (EasyEffects)\npass\nmount\nDisk Usage (Baobab)\ngparted\nhtop\nintelgputop\nradeongputop\nmonitor\nIRC\nZoom\nColor Picker\nMouse Configurator\nController Configurator\nDisplay Configurator\nMusicBrainz Picard\nBitTorrent (Transmission)\nDiscord\nLutris\nSteam\nEpic/Heroic Launcher\nMinecraft\nRetroArch (Emulator)\nCitra (3DS Emulator)\nCemu (Wii U Emulator)"
+options="firefox\nterminal\nnvim\nvifm\nnewsboat\nNetwork Configurator\nBluetooth Configurator\nEQ (EasyEffects)\npass\nmount\nDisk Usage (Baobab)\ngparted\nbtop\nintelgputop\nradeongputop\ntlp\nmonitor\nIRC\nZoom\nColor Picker\nMouse Configurator\nController Configurator\nDisplay Configurator\nMusicBrainz Picard\nBitTorrent (Transmission)\nDiscord\nLutris\nSteam\nEpic/Heroic Launcher\nMinecraft\nRetroArch (Emulator)\nCitra (3DS Emulator)\nCemu (Wii U Emulator)"
 selection=$(printf "$options" | fzf --prompt "Launch: " | tr '[:upper:]' '[:lower:]')
 
 case $selection in
@@ -47,14 +47,18 @@ case $selection in
     setsid gparted &
     sleep 0.1
     ;;
-  "htop")
-    htop
+  "btop")
+    btop
     ;;
   "intelgputop")
     sudo intel_gpu_top
     ;;
   "radeongputop")
     sudo radeontop
+    ;;
+  "tlp")
+    setsid tlpui &
+    sleep 0.1
     ;;
   "monitor")
     fzf-monitor-source.sh
@@ -80,7 +84,7 @@ case $selection in
     sleep 0.1
     ;;
   "display configurator")
-    setsid arandr &
+    setsid wdisplays &
     sleep 0.1
     ;;
   "musicbrainz picard")

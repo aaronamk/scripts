@@ -9,6 +9,6 @@ sudo paccache -rk1
 sudo paccache -ruk0
 sudo pacman -Sc
 
-yay -S archlinux-keyring
-yay -Syu # update
-yay -Rns $(yay -Qtdq) # remove orphans
+sudo pacman -S archlinux-keyring
+paru -Syu # update
+paru -Rns $(paru -Qtdq) # remove orphans
